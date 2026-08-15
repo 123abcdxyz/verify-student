@@ -136,7 +136,7 @@
             </div>
             <div class="form-group">
                 <label>Date of Birth (dd/mm/yyyy) :</label>
-                <input type="text" id="dateofbirth">
+                <input type="date" id="dateofbirth">
             </div>
             <button onclick="verifyStudent()">Verify</button>
             <div id="errorMsg" class="error"></div>
@@ -390,9 +390,10 @@
     <script>
         function verifyStudent() {
             const roll = document.getElementById('rollNo').value.trim();
-            const password = document.getElementById('dateofbirth').value.trim();
+            var password = document.getElementById('dateofbirth').value.trim();
+            const date = new Date(password);
+            var password = date.toLocaleDateString("en-GB");
             const errorMsg = document.getElementById('errorMsg');
-
             if (roll === "211891700568" && password === "08/05/2000") {
                 document.getElementById('loginSection').style.display = 'none';
 
