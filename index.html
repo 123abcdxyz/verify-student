@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Verification Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            max-width: 650px;
+            width: 100%;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #biodataSection {
+            display: none;
+        }
+
+        .section-title {
+            background: #0d47a1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .img-box {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="loginSection">
+            <h2>Student Verification</h2>
+            <div class="form-group">
+                <label>Roll Number (2012/ABCD/1234) :</label>
+                <!-- <input type="text" id="rollNo" placeholder="e.g. 2025/DMES/5647"> -->
+                <input type="text" id="rollNo">
+            </div>
+            <div class="form-group">
+                <label>Date of Birth (dd/mm/yyyy) :</label>
+                <!-- <input type="text" id="dateofbirth" placeholder="e.g. 17/07/2003"> -->
+                <input type="text" id="dateofbirth">
+            </div>
+            <button onclick="verifyStudent()">Verify</button>
+            <div id="errorMsg" class="error"></div>
+        </div>
+
+        <div id="biodataSection">
+            <h2>Ganga Institute of Technology & Management</h2>
+
+            <div class="section-title">1. Student Profile</div>
+            <table>
+                <tr>
+                    <th>Student Name</th>
+                    <td>Jitendra Singh Yadav</td>
+                </tr>
+                <tr>
+                    <th>Father Name</th>
+                    <td>Lal Singh Yadav</td>
+                </tr>
+                <tr>
+                    <th>Mother Name</th>
+                    <td>Ombati Devi</td>
+                </tr>
+                <tr>
+                    <th>Date of Birth</th>
+                    <td>08/05/2000</td>
+                </tr>
+                <tr>
+                    <th>Roll Number</th>
+                    <td>211891700568</td>
+                </tr>
+                <tr>
+                    <th>Program</th>
+                    <td>ELECTRICAL ENGINEERING</td>
+                </tr>
+                <tr>
+                    <th>Year of Passing</th>
+                    <td>JUN-2024</td>
+                </tr>
+                <tr>
+                    <th>Issue Date</th>
+                    <td>NOV-2024</td>
+                </tr>
+            </table>
+
+            <div class="section-title">2. ID Card</div>
+            <div class="img-box">
+                <p style="color: #666; font-style: italic;">[Student ID Card Attached]</p>
+            </div>
+
+            <div class="section-title">3. Results (All Semesters)</div>
+
+            <!-- <h3>1st Semester</h3>
+            <div class="img-box">
+                <table>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Max Marks</th>
+                        <th>Marks Secured</th>
+                    </tr>
+                    <tr>
+                        <td>Engineering Mathematics-I</td>
+                        <td>100</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>Engineering Physics</td>
+                        <td>100</td>
+                        <td>65</td>
+                    </tr>
+                    <tr>
+                        <td>Introduction To IT</td>
+                        <td>100</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <td>Engineering Mechanics</td>
+                        <td>100</td>
+                        <td>61</td>
+                    </tr>
+                    <tr>
+                        <td>Professional Communication-I</td>
+                        <td>100</td>
+                        <td>66</td>
+                    </tr>
+                    <tr>
+                        <td>Applied Mathematics-I</td>
+                        <td>100</td>
+                        <td>78</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2"><b>397 / 600 (First Div / Pass)</b></td>
+                    </tr>
+                </table>
+            </div> -->
+
+            <!-- <h3>2nd Semester</h3>
+            <div class="img-box">
+                <table>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Max Marks</th>
+                        <th>Marks Secured</th>
+                    </tr>
+                    <tr>
+                        <td>Design & Maint. Of Elec. Mach</td>
+                        <td>100</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <td>Power Electronics</td>
+                        <td>100</td>
+                        <td>65</td>
+                    </tr>
+                    <tr>
+                        <td>Trans. & Distri. Of Elec. Power</td>
+                        <td>100</td>
+                        <td>51</td>
+                    </tr>
+                    <tr>
+                        <td>Elec. Engineering Drawing</td>
+                        <td>100</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>Strength of Material</td>
+                        <td>100</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>Industrial Management</td>
+                        <td>100</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2"><b>385 / 600 (First Div / Pass)</b></td>
+                    </tr>
+                </table>
+            </div> -->
+
+            <h3>3rd Semester Held in DEC-2022</h3>
+            <div class="img-box">
+                <table>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Max Marks</th>
+                        <th>Marks Secured</th>
+                    </tr>
+                    <tr>
+                        <td>Electrical and Electronics Engg. Materials (180931) </td>
+                        <td>150</td>
+                        <td>82</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Measurements and Measuring Inst. (180932)</td>
+                        <td>150</td>
+                        <td>62</td>
+                    </tr>
+                    <tr>
+                        <td>Electronics-l (180933) </td>
+                        <td>150</td>
+                        <td>72</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Engineering Design and Drawing (180934)</td>
+                        <td>125</td>
+                        <td>63</td>
+                    </tr>
+                    <tr>
+                        <td>Computer Programming and Applications (180935)</td>
+                        <td>100</td>
+                        <td>36</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Workshop Practice</td>
+                        <td>100</td>
+                        <td>58</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2"><b>215 / 350 (PASS)</b></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>4th Semester Held in JUN-2023</h3>
+            <div class="img-box">
+                <table>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Max Marks</th>
+                        <th>Marks Secured</th>
+                    </tr>
+                    <tr>
+                        <td>Electrical Machines-l (180941/030941)</td>
+                        <td>50</td>
+                        <td>31</td>
+                    </tr>
+                    <tr>
+                        <td>Energy Source and Management of Electrical Energy (180942)</td>
+                        <td>150</td>
+                        <td>77</td>
+                    </tr>
+                    <tr>
+                        <td>Electronics-ll (180943)</td>
+                        <td>150</td>
+                        <td>77</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Engineering Design and Drawing-ll (180944) </td>
+                        <td>150</td>
+                        <td>66</td>
+                    </tr>
+                    <tr>
+                        <td>Enstrumentation (180946)</td>
+                        <td>100</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Estimating and Costing in Electrical Engineering (180945)</td>
+                        <td>100</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Workshop Practice-ll</td>
+                        <td>100</td>
+                        <td>66</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2"><b>226 / 375 (PASS)</b></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>5th Semester Held in DEC-2023</h3>
+            <div class="img-box">
+                <table>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Max Marks</th>
+                        <th>Marks Secured</th>
+                    </tr>
+                    <tr>
+                        <td>Industrial Training</td>
+                        <td>100</td>
+                        <td>89</td>
+                    </tr>
+                    <tr>
+                        <td>Employability Skills-l</td>
+                        <td>150</td>
+                        <td>129</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Machines-ll (180951/30951)</td>
+                        <td>150</td>
+                        <td>127</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Power-l (180952/30952/106552)</td>
+                        <td>150</td>
+                        <td>126</td>
+                    </tr>
+                    <tr>
+                        <td>Industrial Electronics and Control of Drives (180953/30953/105853)</td>
+                        <td>100</td>
+                        <td>82</td>
+                    </tr>
+                    <tr>
+                        <td>Digital Electronics and Microprocessors (180955/30955)</td>
+                        <td>150</td>
+                        <td>131</td>
+                    </tr>
+                    <tr>
+                        <td>Environment Education (180151)</td>
+                        <td>100</td>
+                        <td>92</td>
+                    </tr>
+                    <tr>
+                        <td>Minor Project Work</td>
+                        <td>100</td>
+                        <td>86</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2"><b>412 / 475 (PASS)</b></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>6th Semester Held in JUN-2024</h3>
+            <div class="img-box">
+                <table>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Max Marks</th>
+                        <th>Marks Secured</th>
+                    </tr>
+                    <tr>
+                        <td>Employability Skills-ll</td>
+                        <td>150</td>
+                        <td>121</td>
+                    </tr>
+                    <tr>
+                        <td>Utilization of Elect. Energy(180961)</td>
+                        <td>150</td>
+                        <td>114</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Power-ll (180963/30961)</td>
+                        <td>100</td>
+                        <td>85</td>
+                    </tr>
+                    <tr>
+                        <td>PLC and Microcontrollers(180962)</td>
+                        <td>100</td>
+                        <td>76</td>
+                    </tr>
+                    <tr>
+                        <td>Energy Management (180965A/B/C)</td>
+                        <td>100</td>
+                        <td>89</td>
+                    </tr>
+                    <tr>
+                        <td>Major Project Work</td>
+                        <td>100</td>
+                        <td>83</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2"><b>568 / 700 (PASS)</b></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function verifyStudent() {
+            const roll = document.getElementById('rollNo').value.trim();
+            const password = document.getElementById('dateofbirth').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (roll === "211891700568" && password === "08/05/2000") {
+                document.getElementById('loginSection').style.display = 'none';
+
+                // Show loading message
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loadingDiv';
+                loadingDiv.textContent = 'Verifying, please wait...';
+                loadingDiv.style.textAlign = 'center';
+                loadingDiv.style.padding = '20px';
+                loadingDiv.style.fontSize = '18px';
+                document.getElementById('biodataSection').parentElement.insertBefore(loadingDiv, document.getElementById('biodataSection'));
+
+                // Wait 3 seconds then show data
+                setTimeout(() => {
+                    document.getElementById('loadingDiv').remove();
+                    document.getElementById('biodataSection').style.display = 'block';
+                }, 3000);
+            } else {
+                errorMsg.textContent = "Result not found. Please check your Roll Number and Date of Birth.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
